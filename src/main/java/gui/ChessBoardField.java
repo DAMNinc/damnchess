@@ -125,7 +125,7 @@ public class ChessBoardField extends JPanel
 				g.drawRect(2,2,getWidth()-4,getHeight()-4);
 			}	
 		
-		// Tegner grøn ring, hvis der kan rykkes over i dette felt
+		// Tegner grÃ¸n ring, hvis der kan rykkes over i dette felt
 		if(mother.getLegalFields().contains(pos))
 		{
 			g.setColor(Color.green);
@@ -137,7 +137,7 @@ public class ChessBoardField extends JPanel
 				g.drawOval(i, i, getWidth()-i*2, getHeight()-i*2);
 		}
 	
-		// Tegner grøn ramme hvis dette felt er markeret
+		// Tegner grÃ¸n ramme hvis dette felt er markeret
 		if (mother.getMarkedField() == pos)
 		{
 			g.setColor(Color.green);

@@ -7,7 +7,7 @@ public class FileNameFilter extends FileFilter
 {
 	/**
 	 * Tjekker om en fil har det rigtige format
-	 * @return true hvis filen er en mappe eller har endelsen ".dcg". false i andre tilfælde
+	 * @return true hvis filen er en mappe eller har endelsen ".dcg". false i andre tilfÃ¦lde
 	 */
     public boolean accept(File f)
     {

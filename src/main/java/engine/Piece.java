@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Repræsenterer en brik
+ * ReprÃ¦senterer en brik
  */
 public class Piece implements Serializable
 {
@@ -92,7 +92,7 @@ public class Piece implements Serializable
 	}
 	
 	/**
-	 * Sætter ny position for brikken, f.eks. 21 for A1;
+	 * SÃ¦tter ny position for brikken, f.eks. 21 for A1;
 	 * @param pos En byte der er brikkens nye position
 	 */
 	public void setPos(byte pos)
@@ -102,8 +102,8 @@ public class Piece implements Serializable
 	
 	
 	/**
-	 * Returnerer brikkens række fra 1-8 
-	 * @return en byte med brikken række
+	 * Returnerer brikkens rÃ¦kke fra 1-8 
+	 * @return en byte med brikken rÃ¦kke
 	 */
 	public byte getRank()
 	{
@@ -120,7 +120,7 @@ public class Piece implements Serializable
 	}
 
 	/**
-	 * Ændrer brikkens type. Dette sker kun når en bonde opnår promotion
+	 * Ã†ndrer brikkens type. Dette sker kun nÃ¥r en bonde opnÃ¥r promotion
 	 * @param type En byte der er brikkens nye type
 	 */
 	public void setType(byte type)
@@ -129,7 +129,7 @@ public class Piece implements Serializable
 	}
 	
 	/**
-	 * Indlæser et sæt ryk, som denne brik kan foretage
+	 * IndlÃ¦ser et sÃ¦t ryk, som denne brik kan foretage
 	 * @param moves de nye ryk for brikken
 	 */
 	protected void setLegalMoves(byte[] moves)
@@ -138,9 +138,9 @@ public class Piece implements Serializable
 	}
 	
 	/**
-	 * Returnerer resultatet af lovlige træk, denne brik kan foretage
-	 * De er muligvis forældede. I så fald gælder de som en slags
-	 * træk-historik.
+	 * Returnerer resultatet af lovlige trÃ¦k, denne brik kan foretage
+	 * De er muligvis forÃ¦ldede. I sÃ¥ fald gÃ¦lder de som en slags
+	 * trÃ¦k-historik.
 	 * @return Et array med lovlige ryk
 	 */
 	protected byte[] getLegalMoves()
@@ -149,7 +149,7 @@ public class Piece implements Serializable
 	}
 
 	/**
-	 * Returnerer antallet af træk, som denne brik har foretaget
+	 * Returnerer antallet af trÃ¦k, som denne brik har foretaget
 	 * @return
 	 */
 	public short getNumMoves()
@@ -158,7 +158,7 @@ public class Piece implements Serializable
 	}
 
 	/**
-	 * Forøger antallet af træk med 1
+	 * ForÃ¸ger antallet af trÃ¦k med 1
 	 */
 	public void increaseNumMoves()
 	{
@@ -166,7 +166,7 @@ public class Piece implements Serializable
 	}
 	
 	/**
-	 * Formindsker antallet af træk med 1
+	 * Formindsker antallet af trÃ¦k med 1
 	 */
 	public void decreaseNumMoves()
 	{

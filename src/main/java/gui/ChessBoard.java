@@ -207,7 +207,7 @@ public class ChessBoard extends JPanel implements MouseListener //, MouseMotionL
 			
 			// Denne lille man�vre er n�dvendig, da Datalink.currentPlayer skifter frem og tilbage n�r AI t�nker
 			int currentPlayer = Vars.WHITE;
-			if (mother.getLblCurrentPlayer().getText().toString().equals("Sort tr�kker"))
+			if (mother.getLblCurrentPlayer().getText().toString().equals("Sort trækker"))
 				currentPlayer = Vars.BLACK;
 			
 			// Klikket er lovligt hvis:

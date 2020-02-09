@@ -50,7 +50,7 @@ public class ChessFrame extends BasicFrame implements KeyListener, ActionListene
 	private JMenu mnuThinkTime;
 	private JButton test;
 	
-	int indexKode = 0; // T�ller til snydekode
+	int indexKode = 0; // T?ller til snydekode
 	
 	private final int NORMAL_MENUITEM = 0;
 	private final int RADIO_MENUITEM = 1;
@@ -97,8 +97,8 @@ public class ChessFrame extends BasicFrame implements KeyListener, ActionListene
 	
 	/**
 	 * Opretter en ny menu med menupunkter og giver menupunkterne listeners.
-	 * @param target Angiver hvilken menubar menuen skal tilf�jes til.
-	 * @param menuName Angiver navnet (det viste!) p� menuen.
+	 * @param target Angiver hvilken menubar menuen skal tilf?jes til.
+	 * @param menuName Angiver navnet (det viste!) p? menuen.
 	 * @param menuItems Et string-array med menupunkterne.
 	 */
 	private JMenu newMenu(JComponent target, String menuName, String[] menuItems, int type)
@@ -109,7 +109,7 @@ public class ChessFrame extends BasicFrame implements KeyListener, ActionListene
 		
 		for (String item : menuItems)
 		{
-			if(item.equals("-")) // Angiver en seperator, som skal tilf�jes specielt
+			if(item.equals("-")) // Angiver en seperator, som skal tilf?jes specielt
 				JM.addSeparator();
 			else
 			{
@@ -121,7 +121,7 @@ public class ChessFrame extends BasicFrame implements KeyListener, ActionListene
 						JMI.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, java.awt.Event.CTRL_MASK));
 //					else if (item.equals("Nyt spil"))
 //						JMI.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.Event.CTRL_MASK));
-					else if (item.equals("Fortryd sidste tr�k"))
+					else if (item.equals("Fortryd sidste træk"))
 						JMI.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, java.awt.Event.CTRL_MASK));
 				
 					JM.add(JMI);
@@ -142,11 +142,11 @@ public class ChessFrame extends BasicFrame implements KeyListener, ActionListene
 	}
 	
 	/**
-	 * Opbygger frame'en. Inds�tter alle grafiske komponenter og giver dem listeners
+	 * Opbygger frame'en. Inds?tter alle grafiske komponenter og giver dem listeners
 	 */
 	private void buildGUI() 
 	{
-		// Br�ttet
+		// Br?ttet
 		chessboard = new ChessBoard(datalink, this);
 		chessboard.setDoubleBuffered(true);
 		chessboardBackground = new ChessBoardBackground(chessboard);
@@ -253,7 +253,7 @@ public class ChessFrame extends BasicFrame implements KeyListener, ActionListene
 		chessboard.clearLegalFields();
 		txtHistorik.setText(" ");
 		txtAI.setText("");
-		lblCurrentPlayer.setText("Hvid tr�kker");
+		lblCurrentPlayer.setText("Hvid trækker");
 		chessboard.reloadBoard();
 		
 		mnuDepth.getItem(Vars.aiTreeDepth - 2).setSelected(true);
@@ -363,27 +363,27 @@ public class ChessFrame extends BasicFrame implements KeyListener, ActionListene
 				newGame.showIt();
 //				datalink.newTwoPlayerGame();
 			}
-			else if (knap.equals("�ben"))
+			else if (knap.equals("Åben"))
 			{
-				// Opretter en fil v�lger
+				// Opretter en fil v?lger
 				JFileChooser FC = new JFileChooser();
-				FC.setApproveButtonText("�ben");
-				FC.setDialogTitle("�ben");
+				FC.setApproveButtonText("Åben");
+				FC.setDialogTitle("Åben");
 
 				// Filfilter oprettes og tildeles til vores filechooser,
-				// s� det er kun er .dcg-filer der kan �bnes!
+				// s? det er kun er .dcg-filer der kan ?bnes!
 				FileNameFilter FF = new FileNameFilter();
 				
 				FC.setFileFilter(FF);
 
 				int returnVal = FC.showOpenDialog(this);
 
-				// Hvis en fil er valgt, og der er trykket �ben
+				// Hvis en fil er valgt, og der er trykket ?ben
 				if (returnVal == JFileChooser.APPROVE_OPTION) 
 				{
 					File fileName = new File(FC.getSelectedFile().getAbsolutePath());
 					
-					// �ben kun, hvis den valgte fil er af typen .dcg
+					// ?ben kun, hvis den valgte fil er af typen .dcg
 					if (FF.accept(fileName)) 
 					{
 						
@@ -429,7 +429,7 @@ public class ChessFrame extends BasicFrame implements KeyListener, ActionListene
 								objStream.close();
 								inStream.close();
 								
-								// Klarg�r "nyt" spil
+								// Klarg?r "nyt" spil
 								datalink.resetVariables();
 								if (twoPlayerGame == true)
 									datalink.newTwoPlayerGame();
@@ -442,13 +442,13 @@ public class ChessFrame extends BasicFrame implements KeyListener, ActionListene
 									Datalink.aiColor = aiColor;
 									addAIOutput(" Indstillinger for AI:\n");
 									addAIOutput("   Max. dybde: " + Vars.aiTreeDepth + "\n");
-									addAIOutput("   Max. bet�nkningstid: " + Vars.aiThinkTimeInSeconds + " sek\n");
+									addAIOutput("   Max. betænkningstid: " + Vars.aiThinkTimeInSeconds + " sek\n");
 									if(Datalink.usingOpening)
-										addAIOutput("   Benytter �bning: \n     " + Datalink.opening.name + "\n");
+										addAIOutput("   Benytter åbning: \n     " + Datalink.opening.name + "\n");
 								}
 								
 							
-								// Udf�r gemte tr�k
+								// Udf?r gemte tr?k
 								for(int i = 0 ; i < moveHistory.size(); i++)
 								{
 									
@@ -476,16 +476,16 @@ public class ChessFrame extends BasicFrame implements KeyListener, ActionListene
 								//txtHistorik.setText(objStream.readObject().toString());
 	
 								if (Datalink.currentPlayer == Vars.WHITE)
-									lblCurrentPlayer.setText("Hvid tr�kker");
+									lblCurrentPlayer.setText("Hvid trækker");
 								else 
-									lblCurrentPlayer.setText("Sort tr�kker");
+									lblCurrentPlayer.setText("Sort trækker");
 								
 								
 								chessboard.repaintBoard();
 
 							} catch(IOException e) {
 								JOptionPane.showMessageDialog(this,
-								"Der opstod problemer ved l�sning af filen: \n" + fileName,
+								"Der opstod problemer ved læsning af filen: \n" + fileName,
 								"IO-fejl",
 								JOptionPane.ERROR_MESSAGE);
 								e.printStackTrace();
@@ -501,11 +501,11 @@ public class ChessFrame extends BasicFrame implements KeyListener, ActionListene
 					} // end if accept fileName
 					else
 						JOptionPane.showMessageDialog(this,
-								"Filtypen er forkert. Kan kun �bne filer af typen .dcg",
+								"Filtypen er forkert. Kan kun åbne filer af typen .dcg",
 								"Forkert filtype",
 								JOptionPane.ERROR_MESSAGE);
 				} // end if approve option
-			 // end if "�ben"
+			 // end if "?ben"
 				
 				
 			}
@@ -519,19 +519,19 @@ public class ChessFrame extends BasicFrame implements KeyListener, ActionListene
 			}
 			if (knap.equals("Gem som"))
 			{
-				// Opretter en fil v�lger
+				// Opretter en fil v?lger
 				JFileChooser FC = new JFileChooser();
 				FC.setApproveButtonText("Gem som");
 				FC.setDialogTitle("Gem som");
 		  
 				// Filfilter oprettes og tildeles til vores filechooser, 
-				// s� det kun er .fcf-filer der kan gemmes!
+				// s? det kun er .fcf-filer der kan gemmes!
 				FileNameFilter FF = new FileNameFilter();
 				FC.setFileFilter(FF);
 		  
 				int returnVal = FC.showSaveDialog(this);
 
-				// Hvis brugeren klikkede p� ok/gem
+				// Hvis brugeren klikkede p? ok/gem
 				if(returnVal == JFileChooser.APPROVE_OPTION)
 				{
 					File fileName = new File(FC.getSelectedFile().getAbsolutePath());
@@ -549,7 +549,7 @@ public class ChessFrame extends BasicFrame implements KeyListener, ActionListene
 				System.exit(0);
 			
 			//SPIL
-			else if(knap.equals("Fortryd sidste tr�k"))
+			else if(knap.equals("Fortryd sidste træk"))
 			{
 				if (datalink.getBoardData().getMoveHistory().isEmpty() == false && mnuSpil.isEnabled())
 				{
@@ -560,9 +560,9 @@ public class ChessFrame extends BasicFrame implements KeyListener, ActionListene
 					
 					chessboard.reloadBoard();
 					if (Datalink.currentPlayer == Vars.BLACK)
-						lblCurrentPlayer.setText("Sort tr�kker");
+						lblCurrentPlayer.setText("Sort trækker");
 					if (Datalink.currentPlayer == Vars.WHITE)
-						lblCurrentPlayer.setText("Hvid tr�kker");
+						lblCurrentPlayer.setText("Hvid trækker");
 					
 					if(Datalink.currentPlayer == Vars.WHITE)
 						Datalink.turnNumber--;
@@ -605,20 +605,20 @@ public class ChessFrame extends BasicFrame implements KeyListener, ActionListene
 				chessboard.getFields()[toField].paintImmediately(0, 0, chessboard.getFields()[toField].getWidth(), chessboard.getFields()[toField].getHeight());
 				chessboard.getFields()[fromField].paintImmediately(0, 0, chessboard.getFields()[fromField].getWidth(), chessboard.getFields()[fromField].getHeight());
 			}
-			// Spiltr�sdybde
-			else if (knap.equals("2") || knap.equals("3") || knap.equals("4") || knap.equals("5") || knap.equals("6") || knap.equals("7") || knap.equals("8") || knap.equals("9") || knap.equals("10")) // Spiltr�sdybde 
+			// Spiltr?sdybde
+			else if (knap.equals("2") || knap.equals("3") || knap.equals("4") || knap.equals("5") || knap.equals("6") || knap.equals("7") || knap.equals("8") || knap.equals("9") || knap.equals("10")) // Spiltr?sdybde 
 			{
 				Vars.aiTreeDepth = Integer.parseInt(knap.toString());
 				addAIOutput(" Max. dybde: " + knap.toString() + "\n");
 			}
-			// T�nketid
+			// T?nketid
 			else if (knap.equals("5 sek.") || knap.equals("10 sek.") || knap.equals("15 sek.") || knap.equals("20 sek.") || knap.equals("25 sek.") || knap.equals("30 sek."))
 			{
 				Vars.aiThinkTimeInSeconds = Integer.parseInt(knap.substring(0,2).replace(" ", ""));
-				addAIOutput(" Max. bet�nkningstid: " + knap.toString() + "\n");
+				addAIOutput(" Max. betænkningstid: " + knap.toString() + "\n");
 			}
-			//Hj�lp
-			else if (knap.equals(Vars.APPTITLE + " hj�lp"))
+			//Hj?lp
+			else if (knap.equals(Vars.APPTITLE + " hjælp"))
 			{
 				JOptionPane.showMessageDialog(this, "TO DO :-)");
 			}

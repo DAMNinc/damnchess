@@ -11,10 +11,10 @@ import engine.Piece;
 public class EvalTools {
 	
 	/**
-	 * Beregner "Taxicabdistance" mellem 2 brikker. Altså afstanden ved at følge felterne og ikke fugle flugt.
+	 * Beregner "Taxicabdistance" mellem 2 brikker. AltsÃ¥ afstanden ved at fÃ¸lge felterne og ikke fugle flugt.
 	 * @param p1 Brik 1
 	 * @param p2 Brik 2
-	 * @param b Brættet de står på
+	 * @param b BrÃ¦ttet de stÃ¥r pÃ¥
 	 * @return Afstanden mellem dem
 	 */
 	public static int getTaxicabDistance(Piece p1, Piece p2, Board b){
@@ -22,21 +22,21 @@ public class EvalTools {
 	}
 	
 	/** 
-	 * Giver en værdi for hvor langt vi er i spillet
-	 * @param b Brættet
-	 * @return Værdi mellem 1 og 10, hvor 10 er slutning
+	 * Giver en vÃ¦rdi for hvor langt vi er i spillet
+	 * @param b BrÃ¦ttet
+	 * @return VÃ¦rdi mellem 1 og 10, hvor 10 er slutning
 	 */
 	public static int getGameProgress(Board b){
-		// skal være afhængig af resterende tid, antal brikker og forventet antal moves
+		// skal vÃ¦re afhÃ¦ngig af resterende tid, antal brikker og forventet antal moves
 		
 		double progress = 0.0;
 		
 		// antal brikker
-		progress += (double) ( 32 - b.getPieces().size() ) / 32 * 5; // 5 skal være 3.3 her, da vi vil have en til ting at vurdere længden på
+		progress += (double) ( 32 - b.getPieces().size() ) / 32 * 5; // 5 skal vÃ¦re 3.3 her, da vi vil have en til ting at vurdere lÃ¦ngden pÃ¥
 		
 		final int MOVES = 100;
 		
-		progress += (double) b.getMoveHistory().size() / MOVES * 5; // 5 skal være 3.3 her
+		progress += (double) b.getMoveHistory().size() / MOVES * 5; // 5 skal vÃ¦re 3.3 her
 				
 		
 		return (int) Math.round(progress);		

@@ -50,7 +50,7 @@ public class NewGame extends BasicFrame implements ActionListener, ItemListener,
 	
 	// Indhold til comboboxe
 	String[] color = {"Sort", "Hvid"};
-	String[] difficulty = {"let", "middel", "svær", "brugerdefineret"};
+	String[] difficulty = {"let", "middel", "svÃ¦r", "brugerdefineret"};
 	String[] thinktime = {"5", "10", "15", "20", "25", "30"};
 	String[] depth = {"2", "3", "4", "5", "6", "7", "8", "9", "10"};
 	  
@@ -78,7 +78,7 @@ public class NewGame extends BasicFrame implements ActionListener, ItemListener,
 	}
 	
 	/**
-	 * Opretter swing komponenter og sætter dem i frame'en
+	 * Opretter swing komponenter og sÃ¦tter dem i frame'en
 	 */
 	private void buildGUI()
 	{
@@ -127,15 +127,15 @@ public class NewGame extends BasicFrame implements ActionListener, ItemListener,
 	    lblColor = new JLabel ("Farve:");
 	    lblColor.setFont(new Font("Arial", Font.PLAIN, 14));
 	    PlacerJComponent(lblColor, 20, 150);
-	    lblDifficulty = new JLabel("Sværhedsgrad:");
+	    lblDifficulty = new JLabel("SvÃ¦rhedsgrad:");
 	    lblDifficulty.setFont(new Font("Arial", Font.PLAIN, 14));
 	    PlacerJComponent(lblDifficulty, 20, 180);
 	    
-	    lblThinkTime = new JLabel("Tænketid:");
+	    lblThinkTime = new JLabel("TÃ¦nketid:");
 	    lblThinkTime.setFont(new Font("Arial", Font.PLAIN, 14));
 	    PlacerJComponent(lblThinkTime, 20, 210);
 	    
-	    lblDepth = new JLabel("Spiltræsdybde:");
+	    lblDepth = new JLabel("SpiltrÃ¦sdybde:");
 	    lblDepth.setFont(new Font("Arial", Font.PLAIN, 14));
 	    PlacerJComponent(lblDepth, 20, 240);
 	    
@@ -193,10 +193,10 @@ public class NewGame extends BasicFrame implements ActionListener, ItemListener,
 	}
 	
 	/**
-	 * Indsætter en JComponent i denne frame
-	 * @param component Den JComponent der skal indsættes
-	 * @param x Vandret afstand til øverste venstre hjørne på frame
-	 * @param y Lodret afstand til øverste venstre hjørne på frame
+	 * IndsÃ¦tter en JComponent i denne frame
+	 * @param component Den JComponent der skal indsÃ¦ttes
+	 * @param x Vandret afstand til Ã¸verste venstre hjÃ¸rne pÃ¥ frame
+	 * @param y Lodret afstand til Ã¸verste venstre hjÃ¸rne pÃ¥ frame
 	 */
 	private void PlacerJComponent(JComponent component, int x, int y)
 	{
@@ -266,7 +266,7 @@ public class NewGame extends BasicFrame implements ActionListener, ItemListener,
 					
 				}
 				
-				// Sværhedsgrad
+				// SvÃ¦rhedsgrad
 				Vars.aiThinkTimeInSeconds = Integer.parseInt(comboBoxThinkingTime.getSelectedItem().toString());
 				Vars.aiTreeDepth = Integer.parseInt(comboBoxDepth.getSelectedItem().toString());
 			
@@ -275,7 +275,7 @@ public class NewGame extends BasicFrame implements ActionListener, ItemListener,
 				chessFrame.getChessboard().repaintBoard();
 				
 				
-				// Åbning
+				// Ã…bning
 				if (Datalink.usingOpening)
 				{
 					Datalink.opening = datalink.pickOpening();
@@ -339,7 +339,7 @@ public class NewGame extends BasicFrame implements ActionListener, ItemListener,
 	}
 
 	/**
-	 * Enablér og diseabler comboboxe ud fra valgt spiltype
+	 * EnablÃ©r og diseabler comboboxe ud fra valgt spiltype
 	 *
 	 */
 	private void validateSettings()
@@ -381,14 +381,14 @@ public class NewGame extends BasicFrame implements ActionListener, ItemListener,
 	
 	/**
 	 * Listener til combobox'ene
-	 * Lytter efter ændringer i boxene - Bruges ved ændring af sværhedsgrad
+	 * Lytter efter Ã¦ndringer i boxene - Bruges ved Ã¦ndring af svÃ¦rhedsgrad
 	 */
 	
 	public void itemStateChanged(ItemEvent e) 
 	{
 		JComboBox combobox = (JComboBox)e.getSource();
 	
-		// Hvis sværhedsgraden ændres, ændres comboboxe med tænketid og dybde
+		// Hvis svÃ¦rhedsgraden Ã¦ndres, Ã¦ndres comboboxe med tÃ¦nketid og dybde
 		if (combobox.getSelectedItem().equals("let"))
 		{
 			comboBoxThinkingTime.setSelectedItem("10");
@@ -399,13 +399,13 @@ public class NewGame extends BasicFrame implements ActionListener, ItemListener,
 			comboBoxThinkingTime.setSelectedItem("15");
 			comboBoxDepth.setSelectedItem("4");
 		}
-		else if (combobox.getSelectedItem().equals("svær"))
+		else if (combobox.getSelectedItem().equals("svÃ¦r"))
 		{
 			comboBoxThinkingTime.setSelectedItem("20");
 			comboBoxDepth.setSelectedItem("6");
 		}
 		
-		// Hvis dybde og tænketid svarer til en bestemt sværhedsgrad, vælges denne sværhedsgrad
+		// Hvis dybde og tÃ¦nketid svarer til en bestemt svÃ¦rhedsgrad, vÃ¦lges denne svÃ¦rhedsgrad
 		if(!comboBoxDifficulty.getSelectedItem().equals("let") && comboBoxThinkingTime.getSelectedItem().equals("10") && comboBoxDepth.getSelectedItem().equals("3"))
 		{
 			comboBoxDifficulty.setSelectedItem("let");
@@ -414,15 +414,15 @@ public class NewGame extends BasicFrame implements ActionListener, ItemListener,
 		{
 			comboBoxDifficulty.setSelectedItem("middel");
 		}
-		else if (!comboBoxDifficulty.getSelectedItem().equals("svær") && comboBoxThinkingTime.getSelectedItem().equals("20") && comboBoxDepth.getSelectedItem().equals("6"))
+		else if (!comboBoxDifficulty.getSelectedItem().equals("svÃ¦r") && comboBoxThinkingTime.getSelectedItem().equals("20") && comboBoxDepth.getSelectedItem().equals("6"))
 		{
-			comboBoxDifficulty.setSelectedItem("svær");
+			comboBoxDifficulty.setSelectedItem("svÃ¦r");
 		}
 		
-		// Hvis der ændres på tid eller dybde
+		// Hvis der Ã¦ndres pÃ¥ tid eller dybde
 		if (!combobox.getItemAt(0).equals("let"))
 		{
-			// Hvis dybde og tænketid ikke svarer til en bestemt sværhedsgrad, sættes sværhedsgrad til "brugerdefineret"
+			// Hvis dybde og tÃ¦nketid ikke svarer til en bestemt svÃ¦rhedsgrad, sÃ¦ttes svÃ¦rhedsgrad til "brugerdefineret"
 			if (!(comboBoxThinkingTime.getSelectedItem().equals("10") && comboBoxDepth.getSelectedItem().equals("3")) &&
 			!(comboBoxThinkingTime.getSelectedItem().equals("15") && comboBoxDepth.getSelectedItem().equals("4")) &&
 			!(comboBoxThinkingTime.getSelectedItem().equals("20") && comboBoxDepth.getSelectedItem().equals("6")))

@@ -27,13 +27,13 @@ public class AboutFrame extends BasicFrame
 								   owner.getLocation().y+(owner.getSize().height/2)-(frameSize.height/2));
 		setLocation(location);
 		setTitle("Om " + Vars.APPTITLE);
-		setDefaultCloseOperation(1); //Klik på kryds => frame lukkes
+		setDefaultCloseOperation(1); //Klik pÃ¥ kryds => frame lukkes
 		getContentPane().setLayout(null);
 		buildGUI();
 	}
 
 	/**
-	 * Tilføjer JComponents til frame
+	 * TilfÃ¸jer JComponents til frame
 	 */
 	private void buildGUI() 
 	{

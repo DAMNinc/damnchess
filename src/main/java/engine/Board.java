@@ -22,7 +22,7 @@ public class Board implements Serializable
 
 	/**
 	 * Constructor
-	 * Initialiserer brættet og brikkerne
+	 * Initialiserer brï¿½ttet og brikkerne
 	 */
 	public Board()
 	{
@@ -31,8 +31,8 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Denne metode nulstiller brættet, så alle brikker kommer tilbage til
-	 * startpositionen for den pågældende spiltype.
+	 * Denne metode nulstiller brï¿½ttet, sï¿½ alle brikker kommer tilbage til
+	 * startpositionen for den pï¿½gï¿½ldende spiltype.
 	 * 
 	 * 0 = normal skak 1 = bonde skak
 	 * 
@@ -222,23 +222,23 @@ public class Board implements Serializable
 		}
 		}
 
-		// Opdaterer træk for alle brikker, så de er klar fra begyndelsen
+		// Opdaterer trï¿½k for alle brikker, sï¿½ de er klar fra begyndelsen
 		updateAllLegalMovesForColor(Vars.BLACK, false);
 		updateAllLegalMovesForColor(Vars.WHITE, true);
 		moveHistory.clear();
 	}
 
 	/**
-	 * Nulstiller selve brættet, så alle pladser på brættet får de rigtige værdier
+	 * Nulstiller selve brï¿½ttet, sï¿½ alle pladser pï¿½ brï¿½ttet fï¿½r de rigtige vï¿½rdier
 	 */
 	private void boardInit()
 	{
-		// Sætter værdier på ulovlige pladser for brikkerne
+		// Sï¿½tter vï¿½rdier pï¿½ ulovlige pladser for brikkerne
 		for (int i = 0; i < board.length; i++)
 		{
 			if ((i % 10 == 0) || (i % 10 == 9) || (i < 21) || (i > 98))
 			{
-				board[i] = 100; // Ulovlig område for brikker
+				board[i] = 100; // Ulovlig omrï¿½de for brikker
 			} else
 				board[i] = 0;
 		}
@@ -268,9 +268,9 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Tilføjer en brik til de tre lister
+	 * Tilfï¿½jer en brik til de tre lister
 	 * @param piece
-	 * 			Den brik der skal tilføjes
+	 * 			Den brik der skal tilfï¿½jes
 	 */
 	private void addPiece(Piece piece)
 	{
@@ -293,8 +293,8 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Returnerer skakbrættets datastruktur
-	 * @return skakbrættet som et byte[] array
+	 * Returnerer skakbrï¿½ttets datastruktur
+	 * @return skakbrï¿½ttet som et byte[] array
 	 */
 	public byte[] getBoard()
 	{
@@ -311,12 +311,12 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Returnerer en liste over brikker af den ønskede type
+	 * Returnerer en liste over brikker af den ï¿½nskede type
 	 * 
 	 * @param pieceType
-	 *            den type brik, der ønskes en liste over, f.eks. -1 for sorte
-	 *            bønder.
-	 * @return En liste med de ønskede brikker
+	 *            den type brik, der ï¿½nskes en liste over, f.eks. -1 for sorte
+	 *            bï¿½nder.
+	 * @return En liste med de ï¿½nskede brikker
 	 */
 	public ArrayList<Piece> getPiecesOfType(byte pieceType)
 	{
@@ -324,11 +324,11 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Returnerer en liste over brikker af den ønskede farve
+	 * Returnerer en liste over brikker af den ï¿½nskede farve
 	 * 
 	 * @param color
-	 *            den farve af brikker, der ønskes liste over
-	 * @return En liste med de ønskede brikker
+	 *            den farve af brikker, der ï¿½nskes liste over
+	 * @return En liste med de ï¿½nskede brikker
 	 */
 	public ArrayList<Piece> getPiecesOfColor(byte color)
 	{
@@ -355,7 +355,7 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Finder og returnerer den brik, der står på et givet felt
+	 * Finder og returnerer den brik, der stï¿½r pï¿½ et givet felt
 	 * 
 	 * @param position
 	 * @return en brik, hvis feltet ikke er tomt, ellers null
@@ -388,29 +388,29 @@ public class Board implements Serializable
 
 	/*
 	 * *********************************************************************************
-	 * Tjek af ryk, foretagning af ryk og indlæsning af regelsæt:
+	 * Tjek af ryk, foretagning af ryk og indlï¿½sning af regelsï¿½t:
 	 * *********************************************************************************
 	 */
 
 	/**
-	 * Rykker en brik. Tjekker, om der står en brik på feltet i forvejen.
+	 * Rykker en brik. Tjekker, om der stï¿½r en brik pï¿½ feltet i forvejen.
 	 * 
 	 * Metoden antager, at der indtastes et gyldigt ryk!
-	 * Der valideres ikke på rykket
+	 * Der valideres ikke pï¿½ rykket
 	 * 
 	 * @param piece
 	 *            Den brik, der skal rykkes
 	 * @param to
 	 *            den position, brikkes skal flyttes hen til
-	 * @return En brik, hvis der står en i forvejen, ellers null
+	 * @return En brik, hvis der stï¿½r en i forvejen, ellers null
 	 */
 	public Move movePiece(Piece piece, byte to)
 	{
 		Piece res = null;
 
-		piece.increaseNumMoves(); // Forøger brikkens spiltæller
+		piece.increaseNumMoves(); // Forï¿½ger brikkens spiltï¿½ller
 
-		// Et Move objekt oprettes, så oplysninger om rykket kan gemmes
+		// Et Move objekt oprettes, sï¿½ oplysninger om rykket kan gemmes
 		Move saveMove = new Move(piece, to);
 
 		// Alle ryk for alle brikker gemmes
@@ -419,11 +419,11 @@ public class Board implements Serializable
 			saveMove.pieceMoves.put(savePiece, copyArray(savePiece.getLegalMoves()));
 		}
 		
-		// Nuværende 50-ryks tæller gemmes og forøges derefter
+		// Nuvï¿½rende 50-ryks tï¿½ller gemmes og forï¿½ges derefter
 		saveMove.fiftyMoveCounter = fiftyMoveRuleCounter;
 		fiftyMoveRuleCounter++;
 		
-		// Hvis der rykkes en bonde, nulstilles 50 ryks tælleren
+		// Hvis der rykkes en bonde, nulstilles 50 ryks tï¿½lleren
 		if (piece.getType() == Piece.BPAWN || piece.getType() == Piece.WPAWN)
 		{
 			fiftyMoveRuleCounter = 1;
@@ -438,10 +438,10 @@ public class Board implements Serializable
 			saveMove.checkPiece = checkPiece;
 		}
 
-		// En brik vil ifølge spillets opbygning altid bringe kongen ud af skak.
-		// Ellers er der tale om et ulovligt træk.
-		// Dette skal ikke kunne lade sig gøre.
-		// Derfor sættes disse variable.
+		// En brik vil ifï¿½lge spillets opbygning altid bringe kongen ud af skak.
+		// Ellers er der tale om et ulovligt trï¿½k.
+		// Dette skal ikke kunne lade sig gï¿½re.
+		// Derfor sï¿½ttes disse variable.
 		Datalink.whiteKingCheck = false;
 		Datalink.blackKingCheck = false;
 		checkPiece = null;
@@ -449,7 +449,7 @@ public class Board implements Serializable
 		// Datastrukturen opdateres
 		board[piece.getPos()] = 0;
 		
-		// Hvis destinationsfeltet ikke er tomt, findes brikken, der står der
+		// Hvis destinationsfeltet ikke er tomt, findes brikken, der stï¿½r der
 		if (board[to] != 0)
 		{
 			res = getPieceAtPos(to);
@@ -458,7 +458,7 @@ public class Board implements Serializable
 		// Hvis der er fundet en brik, bliver denne fjernet fra spillet
 		if (res != null)
 		{
-			// 50-ryks regel tælleren nulstilles, fordi der er blevet taget en brik
+			// 50-ryks regel tï¿½lleren nulstilles, fordi der er blevet taget en brik
 			fiftyMoveRuleCounter = 1;
 			fiftyMoveRuleUsed = false;
 			saveMove.takenPiece = res;
@@ -535,15 +535,15 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Metoden undersøger trækket for bestemte egenskaber:
+	 * Metoden undersï¿½ger trï¿½kket for bestemte egenskaber:
 	 * -castle rokade
 	 * -en passant
 	 * -pawn promotion
 	 * 
-	 * Metoden opdaterer samtidig spillets tilstand, hvis det er nødvendigt
+	 * Metoden opdaterer samtidig spillets tilstand, hvis det er nï¿½dvendigt
 	 * 
 	 * @param piece
-	 *            Den brik der undersøges
+	 *            Den brik der undersï¿½ges
 	 * @param to
 	 *            Den position, som brikkes rykker hen til
 	 */
@@ -552,7 +552,7 @@ public class Board implements Serializable
 		switch (piece.getType())
 		{
 		// Hvis kongen kan lave rokade og rykker hen til den rigtige position
-		// udføres rokaden. Koden er næsten selvforklarende
+		// udfï¿½res rokaden. Koden er nï¿½sten selvforklarende
 		case Piece.WKING:
 		{
 			if (to == C1)
@@ -580,7 +580,7 @@ public class Board implements Serializable
 			Datalink.whiteCanCastleRight = false;
 			break;
 		}
-		// Det samme gælder den sorte konge.
+		// Det samme gï¿½lder den sorte konge.
 		case (Piece.BKING):
 		{
 			if (to == C8)
@@ -608,7 +608,7 @@ public class Board implements Serializable
 			Datalink.blackCanCastleRight = false;
 			break;
 		}
-		// Hvis tårnet rykker fra sin udgangsposition er det ikke muligt
+		// Hvis tï¿½rnet rykker fra sin udgangsposition er det ikke muligt
 		// at foretage rokade mere fra denne side.
 		case (Piece.WROOK):
 		{
@@ -670,18 +670,18 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Denne metode undersøger, om modstanderen bliver sat i skak.
+	 * Denne metode undersï¿½ger, om modstanderen bliver sat i skak.
 	 * @param kingColor
-	 * 				Farven på den konge, der skal undersøges
+	 * 				Farven pï¿½ den konge, der skal undersï¿½ges
 	 */
 	private void checkKingStatus(byte kingColor)
 	{
 		if (kingColor == Vars.WHITE) // Hvid
 		{
-			// Kører igennem alle brikker for modstanderen
+			// Kï¿½rer igennem alle brikker for modstanderen
 			for (Piece piece : getPiecesOfColor(Vars.BLACK))
 			{
-				// Kører igennem alle ryk for modstanderens brik
+				// Kï¿½rer igennem alle ryk for modstanderens brik
 				for (byte move : piece.getLegalMoves())
 				{
 					// Hvis brikken kan tage kongen, er kongen blevet sat i skak
@@ -696,7 +696,7 @@ public class Board implements Serializable
 					break;
 			}
 		}
-		else // Sort fungerer på samme måde som hvid
+		else // Sort fungerer pï¿½ samme mï¿½de som hvid
 		{
 			for (Piece piece : getPiecesOfColor(Vars.WHITE))
 			{
@@ -716,9 +716,9 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Afgører om spilleren ikke kan rykke
+	 * Afgï¿½rer om spilleren ikke kan rykke
 	 * @param kingColor
-	 * 				Farven på kongen, hvis brikker skal undersøges
+	 * 				Farven pï¿½ kongen, hvis brikker skal undersï¿½ges
 	 * @return true hvis ingen brikker kan rykke, ellers false
 	 */
 	private boolean cannotMove(byte kingColor)
@@ -748,7 +748,7 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Afgører om 50-ryks regelen kan benyttes
+	 * Afgï¿½rer om 50-ryks regelen kan benyttes
 	 * @return true hvis det er muligt, ellers false
 	 */
 	public boolean canUseFiftyMoveRule()
@@ -760,20 +760,20 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Finder den direkte vej fra en brik til kongen, hvis en sådan findes.
-	 * Metoden benyttes, når kongen skal beskyttes.
+	 * Finder den direkte vej fra en brik til kongen, hvis en sï¿½dan findes.
+	 * Metoden benyttes, nï¿½r kongen skal beskyttes.
 	 * @param piece
-	 * 			Den brik der kigges på. 
-	 * @return En liste bestående af de ryk, som fører brikken hen til kongen.
+	 * 			Den brik der kigges pï¿½. 
+	 * @return En liste bestï¿½ende af de ryk, som fï¿½rer brikken hen til kongen.
 	 */
 	private byte[] optimizeMovePathToKing(Piece piece)
 	{
-		// Først opdateres rykkene
+		// Fï¿½rst opdateres rykkene
 		piece.setLegalMoves(getLegalMoves(piece, false));
 		byte[] result = new byte[0];
 		byte searchPieceType;
 
-		// Afgører hvilken konge der skal søges efter
+		// Afgï¿½rer hvilken konge der skal sï¿½ges efter
 		if (piece.getType() < 0)
 			searchPieceType = Piece.WKING;
 		else
@@ -781,12 +781,12 @@ public class Board implements Serializable
 
 		byte curPos = piece.getPos();
 
-		// Forsøger at gå i alle retninger for at finde kongen
+		// Forsï¿½ger at gï¿½ i alle retninger for at finde kongen
 		for (int i = 0; i < DIRECTIONS.length; i++)
 		{
 			if (arrayContains(piece.getLegalMoves(), (byte) (curPos + DIRECTIONS[i])))
 			{
-				// Hvis kongen kun står ved siden af brikken, vi kigger på, returneres blot dette ryk
+				// Hvis kongen kun stï¿½r ved siden af brikken, vi kigger pï¿½, returneres blot dette ryk
 				if (board[curPos + DIRECTIONS[i]] == searchPieceType)
 					return new byte[] { (byte) (curPos + DIRECTIONS[i]) };
 				
@@ -803,16 +803,16 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Gennemsøger en briks ryk for at optimere vejen til en bestemt anden brik.
+	 * Gennemsï¿½ger en briks ryk for at optimere vejen til en bestemt anden brik.
 	 * 
-	 * Metoden kører rekursivt, heraf navnet.
+	 * Metoden kï¿½rer rekursivt, heraf navnet.
 	 * 
 	 * @param curPos
-	 *            nuværende position
+	 *            nuvï¿½rende position
 	 * @param direction
 	 *            retning, der kigges i
 	 * @param searchPieceType
-	 *            den briktype der søges efter
+	 *            den briktype der sï¿½ges efter
 	 * @param legalMoveList
 	 *            de ryk, som brikken kan foretage sig
 	 * @return en opdateret liste med kun de ryk, der leder hen til brikken
@@ -821,23 +821,23 @@ public class Board implements Serializable
 			byte searchPieceType, byte[] legalMoveList)
 	{
 		byte[] result = new byte[0];
-		// Først undersøges, om den fortsat kan gå i retningen
+		// Fï¿½rst undersï¿½ges, om den fortsat kan gï¿½ i retningen
 		// Eller returneres en tom liste
 		if (arrayContains(legalMoveList, (byte) (curPos + direction)))
 		{
 			byte[] temp = new byte[0];
 			
-			// Hvis algoritmen har fundet den ønskede brik
+			// Hvis algoritmen har fundet den ï¿½nskede brik
 			// Returneres en liste med de relevante ryk
 			if (board[curPos + direction] == searchPieceType)
 			{
 				return new byte[] { (byte) (curPos + direction), curPos };
 			}
-			else // Eller søges der videre
+			else // Eller sï¿½ges der videre
 				temp = recursivePathFinder((byte) (curPos + direction),
 						direction, searchPieceType, legalMoveList);
-			// Der tilføjes et ekstra ryk til ryklisten frem mod den brik,
-			// der søges efter
+			// Der tilfï¿½jes et ekstra ryk til ryklisten frem mod den brik,
+			// der sï¿½ges efter
 			if (temp.length > 0)
 			{
 				result = new byte[temp.length + 1];
@@ -857,7 +857,7 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Metoden forfremmer en bonde, som er nået hen over brættet til den anden
+	 * Metoden forfremmer en bonde, som er nï¿½et hen over brï¿½ttet til den anden
 	 * side
 	 * 
 	 * @param piece
@@ -865,7 +865,7 @@ public class Board implements Serializable
 	 * @param color
 	 *            den farve, brikken har
 	 * @param pos
-	 *            den position, hvor brikken står
+	 *            den position, hvor brikken stï¿½r
 	 */
 	public void promotePawn(Piece piece, byte color, byte pos)
 	{
@@ -892,13 +892,13 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Metoden returnerer en liste over træk, der kan foretages i ét ryk.
+	 * Metoden returnerer en liste over trï¿½k, der kan foretages i ï¿½t ryk.
 	 * 
 	 * Denne metode giver udelukkende en liste over ryk, der KAN foretages. Den
 	 * rykker ikke, evaluerer ikke eller noget andet.
 	 * 
 	 * @param piece
-	 *            Den brik, der undersøges
+	 *            Den brik, der undersï¿½ges
 	 * @return en liste over mulige ryk.
 	 */
 	private byte[] getLegalMoves(Piece piece, boolean evalMoves)
@@ -907,18 +907,18 @@ public class Board implements Serializable
 		byte index = 0;
 		byte curPos = piece.getPos();
 		/*
-		 * Kommentarer skrives før hvert case for at holde det overskueligt
+		 * Kommentarer skrives fï¿½r hvert case for at holde det overskueligt
 		 */
 		switch (piece.getType())
 		{
 		/*
 		 * Bonden 1. Der tjekkes, om bonden er i sin startposition og ikke
-		 * blokeret af andre brikker = 2 ryk frem 2. Ellers kun ét ryk frem 3.
-		 * Der tjekkes, om der står en modstanderbrik på hver af de to felter
-		 * skråt fremme i forhold til bonden = ryk til disse og tag brikken 4.
-		 * Der tjekkes, om bonden har mulighed for at lave et en passant træk
+		 * blokeret af andre brikker = 2 ryk frem 2. Ellers kun ï¿½t ryk frem 3.
+		 * Der tjekkes, om der stï¿½r en modstanderbrik pï¿½ hver af de to felter
+		 * skrï¿½t fremme i forhold til bonden = ryk til disse og tag brikken 4.
+		 * Der tjekkes, om bonden har mulighed for at lave et en passant trï¿½k
 		 * 
-		 * Ovenstående punkter gælder for både sort og hvid bonde
+		 * Ovenstï¿½ende punkter gï¿½lder for bï¿½de sort og hvid bonde
 		 */
 		case (Piece.WPAWN):
 		{
@@ -1897,7 +1897,7 @@ public class Board implements Serializable
 				if (tempPiece != null)
 				{
 					// Hvis den beskytter kongen fra kun 1 brik,
-					// kan den muligvis rykke imod denne brik. Undersøges her
+					// kan den muligvis rykke imod denne brik. Undersï¿½ges her
 
 					// Vi snyder og fjerner brikken
 					board[piece.getPos()] = 0;
@@ -1929,7 +1929,7 @@ public class Board implements Serializable
 				if (tempPiece != null)
 				{
 					// Hvis den beskytter kongen fra kun 1 brik,
-					// kan den muligvis rykke imod denne brik. Undersøges her
+					// kan den muligvis rykke imod denne brik. Undersï¿½ges her
 
 					// Vi snyder og fjerner brikken
 					board[piece.getPos()] = 0;
@@ -1954,7 +1954,7 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Undersøger om brikken kan beskytte sin konge, hvis kongen er i skak
+	 * Undersï¿½ger om brikken kan beskytte sin konge, hvis kongen er i skak
 	 * 
 	 * @param moves
 	 *            de ryk som brikken kan foretage
@@ -1993,7 +1993,7 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Metoden bestemmer, hvor kongen kan rykke hen, hvis den står i skak
+	 * Metoden bestemmer, hvor kongen kan rykke hen, hvis den stï¿½r i skak
 	 * 
 	 * @param kingMoves
 	 *            De ryk kongen har beregnet, at den kan foretage
@@ -2006,7 +2006,7 @@ public class Board implements Serializable
 
 		boolean illegalMove = false;
 
-		// Vi skal undersøge for alle andre brikker, at vi ikke blot bringer
+		// Vi skal undersï¿½ge for alle andre brikker, at vi ikke blot bringer
 		// kongen i en ny skaksituation
 		if (kingPiece.getType() > 0)
 		{
@@ -2039,7 +2039,7 @@ public class Board implements Serializable
 				}
 
 				// if (kingMove == kingPiece.getPos() + N)
-				// System.out.println("Forsøger ulovligt ryk" + kingMove +
+				// System.out.println("Forsï¿½ger ulovligt ryk" + kingMove +
 				// illegalMove);
 
 				// Sidste tjek er for at sikre,
@@ -2132,8 +2132,8 @@ public class Board implements Serializable
 					checkPiece.setLegalMoves(getLegalMoves(checkPiece, false));
 				}
 
-				// Tjekker om trækket fører hen til nogle bonder
-				// - disse har nemlig ikke skrå ryk som legalmove normalt
+				// Tjekker om trï¿½kket fï¿½rer hen til nogle bonder
+				// - disse har nemlig ikke skrï¿½ ryk som legalmove normalt
 				if (!illegalMove)
 				{
 					if (board[kingMove + NE] == Piece.BPAWN
@@ -2260,8 +2260,8 @@ public class Board implements Serializable
 					checkPiece.setLegalMoves(getLegalMoves(checkPiece, false));
 				}
 
-				// Tjekker om trækket fører hen til nogle bonder
-				// - disse har nemlig ikke skrå ryk som legalmove normalt
+				// Tjekker om trï¿½kket fï¿½rer hen til nogle bonder
+				// - disse har nemlig ikke skrï¿½ ryk som legalmove normalt
 				if (!illegalMove)
 				{
 					if (board[kingMove + SE] == Piece.WPAWN
@@ -2279,11 +2279,11 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Undersøger om en brik er beskyttet af sine egne. Dette bruges til at
-	 * finde ud af, om kongen må flytte derhen
+	 * Undersï¿½ger om en brik er beskyttet af sine egne. Dette bruges til at
+	 * finde ud af, om kongen mï¿½ flytte derhen
 	 * 
 	 * @param piece
-	 *            Den brik, der undersøges
+	 *            Den brik, der undersï¿½ges
 	 * @return true hvis den er beskyttet ellers false
 	 */
 	private boolean pieceIsProtected(Piece piece)
@@ -2295,7 +2295,7 @@ public class Board implements Serializable
 		{
 			for (Piece tempPiece : getPiecesOfColor(Vars.WHITE))
 			{
-				// Der skal selvfølgelig ikke undersøges, om den beskytter sig
+				// Der skal selvfï¿½lgelig ikke undersï¿½ges, om den beskytter sig
 				// selv.
 				if (tempPiece.equals(piece))
 					continue;
@@ -2329,12 +2329,12 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Undersøger om en brik kan rykke væk fra sin plads.
+	 * Undersï¿½ger om en brik kan rykke vï¿½k fra sin plads.
 	 * 
-	 * Dette er f.eks. ikke tilfældet, hvis den beskytter kongen.
+	 * Dette er f.eks. ikke tilfï¿½ldet, hvis den beskytter kongen.
 	 * 
 	 * @param piece
-	 *            Den brik, der underøsges
+	 *            Den brik, der underï¿½sges
 	 * @return true hvis den beskytter kongen, ellers false
 	 */
 	private Piece pieceProtectsKingFrom(Piece piece)
@@ -2347,14 +2347,14 @@ public class Board implements Serializable
 		// Hvis brikken er hvid
 		if (piece.getType() > 0)
 		{
-			// Kører igennem alle modstanderens brikker
+			// Kï¿½rer igennem alle modstanderens brikker
 			for (Piece tempPiece : piece.getEnemies())
 			{
 				// Vi skal ikke medregne, hvis en brik har sat kongen i skak
 				if (tempPiece.equals(checkPiece))
 					continue;
 
-				// Kører igennem alle ryk for modstanderens brik
+				// Kï¿½rer igennem alle ryk for modstanderens brik
 				for (byte tempPieceMove : getLegalMoves(tempPiece, false))
 				{
 					// Hvis modstanderen kan ramme kongen,
@@ -2377,7 +2377,7 @@ public class Board implements Serializable
 				if (tempPiece.equals(checkPiece))
 					continue;
 
-				// Kører igennem alle ryk for modstanderens brik
+				// Kï¿½rer igennem alle ryk for modstanderens brik
 				for (byte tempPieceMove : getLegalMoves(tempPiece, false))
 				{
 					// Hvis modstanderen kan ramme kongen,
@@ -2398,12 +2398,12 @@ public class Board implements Serializable
 	}
 
 	/**
-	 * Optimerer et array, så kun det nødvendige kommer med
+	 * Optimerer et array, sï¿½ kun det nï¿½dvendige kommer med
 	 * 
 	 * @param array
 	 *            det array, der skal optimeres
 	 * @param index
-	 *            størrelsen af det nye array
+	 *            stï¿½rrelsen af det nye array
 	 * @return et nyt array, som er trimmet
 	 */
 	private byte[] compressArray(byte[] array, int index)
@@ -2444,12 +2444,12 @@ public class Board implements Serializable
 	public void undoMove(Move move)
 	{
 		/*
-		 * Først håndteres special trækkene.
+		 * Fï¿½rst hï¿½ndteres special trï¿½kkene.
 		 */
 		// Hvis en bonde er blevet promoted
 		if (move.promotion)
 		{
-			// Hvis bonden har taget en brik på vej op mod sin promotion
+			// Hvis bonden har taget en brik pï¿½ vej op mod sin promotion
 			if (move.takenPiece != null)
 			{
 				if (move.movedPiece.getType() > 0)
@@ -2517,7 +2517,7 @@ public class Board implements Serializable
 				Datalink.blackHasCastled = false;
 			}
 		} // end if castledleft
-		else if (move.castledRight) // hvis rykket var en castling til højre
+		else if (move.castledRight) // hvis rykket var en castling til hï¿½jre
 		{
 			if (move.movedPiece.getType() > 0)
 			{
@@ -2582,7 +2582,7 @@ public class Board implements Serializable
 
 		move.movedPiece.decreaseNumMoves();
 
-		// Hvis et træk med kongen eller tårnet fortrydes,
+		// Hvis et trï¿½k med kongen eller tï¿½rnet fortrydes,
 		// skal det tjekkes, om det er muligt at lave castling
 		if (move.movedPiece.getType() == Piece.WKING
 				&& move.movedPiece.getNumMoves() == 0
@@ -2774,7 +2774,7 @@ public class Board implements Serializable
 	public static final int UPSIDE_DOWN_CHESS = 4; // upside-down chess
 
 	/**
-	 * Printer skakbrættet. Bruges til debugging
+	 * Printer skakbrï¿½ttet. Bruges til debugging
 	 */
 	public void printBoard()
 	{
@@ -2793,7 +2793,7 @@ public class Board implements Serializable
 	{
 		System.out
 				.println("***************************************************");
-		System.out.println("Kører test på board");
+		System.out.println("KÃ¸rer test pÃ¥ board");
 		System.out
 				.println("***************************************************");
 
@@ -2829,7 +2829,7 @@ public class Board implements Serializable
 		}
 		stop = System.currentTimeMillis();
 		System.out
-				.println("Tid for 100.000 oprettelser af array samt compressarray kørsler "
+				.println("Tid for 100.000 oprettelser af array samt compressarray kÃ¸rsler "
 						+ (stop - start));
 
 		Piece temp = getPieceAtPos(G8);
@@ -2840,7 +2840,7 @@ public class Board implements Serializable
 			checkMoves(temp, temp.getLegalMoves());
 		}
 		stop = System.currentTimeMillis();
-		System.out.println("Tid for 100.000 checkMoves kørsler "
+		System.out.println("Tid for 100.000 checkMoves kÃ¸rsler "
 				+ (stop - start));
 
 		start = System.currentTimeMillis();
@@ -2849,7 +2849,7 @@ public class Board implements Serializable
 			pieceIsProtected(temp);
 		}
 		stop = System.currentTimeMillis();
-		System.out.println("Tid for 100.000 pieceIsProtected kørsler "
+		System.out.println("Tid for 100.000 pieceIsProtected kÃ¸rsler "
 				+ (stop - start));
 
 		start = System.currentTimeMillis();
@@ -2858,7 +2858,7 @@ public class Board implements Serializable
 			pieceProtectsKingFrom(temp);
 		}
 		stop = System.currentTimeMillis();
-		System.out.println("Tid for 100.000 pieceProtecstKingFrom kørsler "
+		System.out.println("Tid for 100.000 pieceProtecstKingFrom kÃ¸rsler "
 				+ (stop - start));
 	}
 
@@ -2868,7 +2868,7 @@ public class Board implements Serializable
 		long stop;
 		System.out
 				.println("***************************************************");
-		System.out.println("Kører spiltests på board");
+		System.out.println("KÃ¸rer spiltests pÃ¥ board");
 		System.out
 				.println("***************************************************");
 
