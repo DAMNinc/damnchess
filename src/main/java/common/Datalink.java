@@ -39,18 +39,18 @@ public class Datalink {
 	public static byte aiColor = Vars.BLACK;
 	public static boolean twoPlayerGame = false;
 	public static boolean aivsai = false; // ai mod ai
-	public static boolean usingOpening = true; // åbninger bruges kun når denne er true
-	public static Opening opening; // den åbning der skal bruges
+	public static boolean usingOpening = true; // Ã¥bninger bruges kun nÃ¥r denne er true
+	public static Opening opening; // den Ã¥bning der skal bruges
 	public static int openingMoveNumberWhite;
 	public static int openingMoveNumberBlack;
 
-	public Piece hintPiece; // Sættes i aiplayer
+	public Piece hintPiece; // SÃ¦ttes i aiplayer
 	public byte hintMove; // bruges til hintfunktionen
 	public int nodesExpanded = 0;
-	public static boolean justMovedOpening = false; // har vi lige brugt et åbningstræk?
+	public static boolean justMovedOpening = false; // har vi lige brugt et Ã¥bningstrÃ¦k?
 
 	static int countPlays = 0; // debugging
-	public static boolean abStart = false; // om vi stadig er i gang med åbninger
+	public static boolean abStart = false; // om vi stadig er i gang med Ã¥bninger
 
 	public Datalink() {
 		boardData = new Board();
@@ -76,9 +76,9 @@ public class Datalink {
 				if (turnNumber == 1 && currentPlayer == Vars.WHITE && !twoPlayerGame) {
 					chessFrame.addAIOutput(" Indstillinger for AI:\n");
 					chessFrame.addAIOutput("   Max. dybde: " + Vars.aiTreeDepth + "\n");
-					chessFrame.addAIOutput("   Max. betænkningstid: " + Vars.aiThinkTimeInSeconds + " sek\n");
+					chessFrame.addAIOutput("   Max. betÃ¦nkningstid: " + Vars.aiThinkTimeInSeconds + " sek\n");
 					if (usingOpening)
-						chessFrame.addAIOutput("   Benytter åbning: \n     " + opening.name + "\n");
+						chessFrame.addAIOutput("   Benytter Ã¥bning: \n     " + opening.name + "\n");
 				}
 
 				currentPlayer = (byte) ((currentPlayer + 1) % 2);
@@ -87,9 +87,9 @@ public class Datalink {
 					aiColor = currentPlayer;
 
 				if (currentPlayer == Vars.WHITE)
-					chessFrame.lblCurrentPlayer.setText("Hvid trækker");
+					chessFrame.lblCurrentPlayer.setText("Hvid trÃ¦kker");
 				else
-					chessFrame.lblCurrentPlayer.setText("Sort trækker");
+					chessFrame.lblCurrentPlayer.setText("Sort trÃ¦kker");
 
 				chessFrame.lblCurrentPlayer.paintImmediately(0, 0, chessFrame.lblCurrentPlayer.getWidth(), chessFrame.lblCurrentPlayer.getHeight());
 
@@ -101,7 +101,7 @@ public class Datalink {
 					bestPiece = null;
 					int res = 0;
 					try {
-						// sættes til false, så undoLastMove ikke trækker 1 fra openingMoveNumberXX hver gang AlphaBeta kalder den
+						// sÃ¦ttes til false, sÃ¥ undoLastMove ikke trÃ¦kker 1 fra openingMoveNumberXX hver gang AlphaBeta kalder den
 						justMovedOpening = false;
 						if (currentPlayer == Vars.BLACK) {
 							bestPiece = boardData.getPieceAtPos(opening.fromBlack.get(openingMoveNumberBlack));
@@ -128,7 +128,7 @@ public class Datalink {
 					long end = System.currentTimeMillis();
 					if (!usingOpening){
 						chessFrame.addAIOutput(" " + ((currentPlayer == Vars.BLACK) ? "Sort" : "Hvid") + ": " + time.format(((end - start) / 1000.0)) + " sek (dybde: " + res + ")\n");
-						chessFrame.addAIOutput(" Antal knuder besøgt: " + nodesExpanded + "\n");
+						chessFrame.addAIOutput(" Antal knuder besÃ¸gt: " + nodesExpanded + "\n");
 					}
 					
 					if (blackKingCheckMate || whiteKingCheckMate || gameDraw) {
@@ -148,7 +148,7 @@ public class Datalink {
 								endGame(Byte.MIN_VALUE);
 						}
 						while ((System.currentTimeMillis() - start) < 1000)
-							; // evt. benyttes så AI'en flytter brikken med det samme, selvom trækket blev udregnet på ingen tid.
+							; // evt. benyttes sÃ¥ AI'en flytter brikken med det samme, selvom trÃ¦kket blev udregnet pÃ¥ ingen tid.
 						
 						move(bestPiece, bestMove);
 						play();
@@ -179,7 +179,7 @@ public class Datalink {
 	}
 
 	public Opening pickOpening() {
-		// hvis AI starter, vælger den en tilfældig. Ellers skal den finde en åbning der passer til brugerens startryk
+		// hvis AI starter, vÃ¦lger den en tilfÃ¦ldig. Ellers skal den finde en Ã¥bning der passer til brugerens startryk
 		ArrayList<Opening> openings = Opening.parseOpenings("opengames.txt", boardData);
 		for (int i = 0; i < openings.size(); i++) {
 			openings.get(i).stringToMove();
@@ -240,7 +240,7 @@ public class Datalink {
 	}
 
 	/**
-	 * Hvis der startes et nyt spil, skal alle variabler nulstilles. Det gøres her.
+	 * Hvis der startes et nyt spil, skal alle variabler nulstilles. Det gÃ¸res her.
 	 */
 	public void resetVariables() {
 		currentPlayer = Vars.WHITE;
@@ -275,11 +275,11 @@ public class Datalink {
 	}
 	
 	/**
-	 *  Genererer historik for et træk
-	 * @param from Index på feltet der flyttes fra
-	 * @param to Index på feltet der flyttes til
+	 *  Genererer historik for et trÃ¦k
+	 * @param from Index pÃ¥ feltet der flyttes fra
+	 * @param to Index pÃ¥ feltet der flyttes til
 	 * @param movingPiece Hvilken type brik flytter (eks. 1 for bonde) 
-	 * @param pieceAtNewPos Hvilken brik står i det felt der flyttes til (null hvis tom!)
+	 * @param pieceAtNewPos Hvilken brik stÃ¥r i det felt der flyttes til (null hvis tom!)
 	 * @return Den generede historik
 	 */
 	public String generateHistory(byte from, byte to, byte movingPiece, Piece pieceAtNewPos)

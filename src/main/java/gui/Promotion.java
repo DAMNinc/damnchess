@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Kan oprette 9 forskellige dialogbokse til kommunikation med brugeren.
  * Det er i disse bokse som brugeren indtaster oplysninger om projekter, aktiviteter og medarbejdere
- * Klassen kommunikere direkte med klassen Data, så alle nyindtastede oplysninger gemmes med det samme
+ * Klassen kommunikere direkte med klassen Data, sï¿½ alle nyindtastede oplysninger gemmes med det samme
  * @author 	Niklas Boss, Andreas Jensen, Michael Thomassen, David Lebech
  * @version 1.0
  */
@@ -32,7 +32,7 @@ public class Promotion extends JDialog implements PropertyChangeListener
 
 	/**
 	 * Opretter en dialogbox med en liste over de 4 brikker en bonde kan forfremmes til
-     * @param aFrame Hvilket frame hører dialogboksen til
+     * @param aFrame Hvilket frame hï¿½rer dialogboksen til
      * @param datalink Adgang til skakmotoren
 	 */
     
@@ -45,7 +45,7 @@ public class Promotion extends JDialog implements PropertyChangeListener
       
     	setTitle("Forfremmelse"); 
 		
-		lblHeadline = new JLabel("Vælg ny brik:");
+		lblHeadline = new JLabel("VÃ¦lg ny brik:");
 		lblHeadline.setFont(new Font("Arial", Font.BOLD, 13));
 		
 		listModel = new DefaultListModel();
@@ -55,7 +55,7 @@ public class Promotion extends JDialog implements PropertyChangeListener
 		pieceList.setPreferredSize(new Dimension(10,pieceList.getHeight()));
 		JScrollPane listScrollPane = new JScrollPane(pieceList);
 		
-		String[] navne = {"Springer", "Løber", "Tårn", "Dronning"};
+		String[] navne = {"Springer", "LÃ¸ber", "TÃ¥rn", "Dronning"};
 		
 		for (String navn : navne)
 			listModel.addElement(navn);
@@ -91,18 +91,18 @@ public class Promotion extends JDialog implements PropertyChangeListener
     }
 
     /**
-     * Listener - Reagerer bl.a. ved museklik på knapperne
+     * Listener - Reagerer bl.a. ved museklik pï¿½ knapperne
      */
     public void propertyChange(PropertyChangeEvent e)
     {
-    	Object value = optionPane.getValue(); // Hvad er ændret?
+    	Object value = optionPane.getValue(); // Hvad er ï¿½ndret?
     	optionPane.setValue(JOptionPane.UNINITIALIZED_VALUE);
     	
-    	if(value.equals("OK")) // Klik på "OK"
+    	if(value.equals("OK")) // Klik pÃ¥ "OK"
     	{
     		byte[] pieces = {2,3,4,5};
     			
-    		// Sæt brugerens valg i spilmotor
+    		// Sï¿½t brugerens valg i spilmotor
     		if (Datalink.currentPlayer == Vars.BLACK)
     			Datalink.blackPawnPromoteType = (byte)(pieces[pieceList.getSelectedIndex()]*-1);
     		else if (Datalink.currentPlayer == Vars.WHITE)

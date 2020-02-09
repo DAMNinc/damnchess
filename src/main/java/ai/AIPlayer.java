@@ -17,15 +17,15 @@ public class AIPlayer
 
 	Datalink datalink; // giver os mulighed for at snakke med motor og gui
 	Board b;
-	boolean loop; // sættes når der er fundet loop
+	boolean loop; // sï¿½ttes nï¿½r der er fundet loop
 	Piece nextBestPiece;
 	Byte nextBestMove;
 	Integer nextBestVal;
 	static boolean timesup = false;
 	Piece forcePiece; // hvis vi skal tvinge alphabeta til kun at benytte dette ryk som roden.
 	byte forceMove;
-	static HashMap<Byte, HashMap<Integer, Piece>> bestPieces; // indeholder de mulige træk der er i roden af træet
-	static int counter = 0; // holder styr på antal knuder der er besøgt
+	static HashMap<Byte, HashMap<Integer, Piece>> bestPieces; // indeholder de mulige trï¿½k der er i roden af trï¿½et
+	static int counter = 0; // holder styr pï¿½ antal knuder der er besï¿½gt
 	timer t;
 
 	public AIPlayer(Datalink datalink) {
@@ -36,21 +36,21 @@ public class AIPlayer
 	}
 
 	/**
-	 * Finder ud af, om det træk i en åbning, der er benyttet er fordelagtigt. Det undersøges om brættets værdi (ved kald af evalueringsfunktionen) er markant dårligere, ved at benytte åbningen frem for alpha-beta
+	 * Finder ud af, om det trï¿½k i en ï¿½bning, der er benyttet er fordelagtigt. Det undersï¿½ges om brï¿½ttets vï¿½rdi (ved kald af evalueringsfunktionen) er markant dï¿½rligere, ved at benytte ï¿½bningen frem for alpha-beta
 	 * 
 	 * @param root
 	 *            Benyttes ikke her, men gives videre til alphabeta()
 	 * @param player
 	 *            Aktuelle spiller
 	 * @param depth
-	 *            Spiltræsdybde
+	 *            Spiltrï¿½sdybde
 	 * @param p
-	 *            Brikken fra åbningstrækket
+	 *            Brikken fra ï¿½bningstrï¿½kket
 	 * @param move
 	 *            Feltet brikken vil rykke til
 	 * @param bound
-	 *            Grænseværdi for, hvor dårligt brættet må være i forhold til alpha-beta
-	 * @return Den returnerede værdi fra alphabeta()
+	 *            Grï¿½nsevï¿½rdi for, hvor dï¿½rligt brï¿½ttet mï¿½ vï¿½re i forhold til alpha-beta
+	 * @return Den returnerede vï¿½rdi fra alphabeta()
 	 */
 	public int AB(boolean root, byte player, int depth, Piece p, byte move, int bound) {
 		b.movePiece(p, move);
@@ -60,7 +60,7 @@ public class AIPlayer
 		forceMove = move;
 		int res = alphabeta(root, player, depth, Integer.MIN_VALUE, Integer.MAX_VALUE, false);
 
-		if (Math.abs(boardVal - res) < bound) { // hvis resultatet er dårligere sættes best-værdierne til dem før alphabeta.
+		if (Math.abs(boardVal - res) < bound) { // hvis resultatet er dï¿½rligere sï¿½ttes best-vï¿½rdierne til dem fï¿½r alphabeta.
 			datalink.bestPiece = forcePiece;
 			datalink.bestMove = forceMove;
 		} else {
@@ -70,19 +70,19 @@ public class AIPlayer
 	}
 
 	/**
-	 * Bruges til at kalde den rigtige alphabeta-funktion. Denne funktion sørger for at vi ikke overskrider den tidsgrænse der er sat i spillet indstillinger. Der foregår en slags iterativ dybdesøgning, hvor der søges ved dybde 1 og dybden herefter forøges med 1 per søgning. Når tiden er gået bruger man det sidst fundne træk.
+	 * Bruges til at kalde den rigtige alphabeta-funktion. Denne funktion sï¿½rger for at vi ikke overskrider den tidsgrï¿½nse der er sat i spillet indstillinger. Der foregï¿½r en slags iterativ dybdesï¿½gning, hvor der sï¿½ges ved dybde 1 og dybden herefter forï¿½ges med 1 per sï¿½gning. Nï¿½r tiden er gï¿½et bruger man det sidst fundne trï¿½k.
 	 * 
 	 * @param root
 	 *            Sendes videre til alphabeta()
 	 * @param player
 	 *            Sendes videre til alphabeta()
 	 * @param depth
-	 *            Maksimal spiltræsdybde. Hvis denne nås før tiden er gået, søges ikke videre, men dennes værdi returneres.
+	 *            Maksimal spiltrï¿½sdybde. Hvis denne nï¿½s fï¿½r tiden er gï¿½et, sï¿½ges ikke videre, men dennes vï¿½rdi returneres.
 	 * @param alpha
 	 *            Beskrives i alphabeta()
 	 * @param beta
 	 *            Beskrives i alphabeta()
-	 * @return Dybden med det sidst fundne træk
+	 * @return Dybden med det sidst fundne trï¿½k
 	 */
 	public int AB(boolean root, byte player, int depth, int alpha, int beta) {
 		forcePiece = null;
@@ -116,24 +116,24 @@ public class AIPlayer
 	}
 
 	/**
-	 * Alphabeta pruning foregår her.
+	 * Alphabeta pruning foregï¿½r her.
 	 * 
 	 * @param root
-	 *            Angiver om vi er i roden. Den sættes til true ved første kald, og herfra vil den altid være false. Det er kun i roden, at de fundne brikker gemmes.
+	 *            Angiver om vi er i roden. Den sï¿½ttes til true ved fï¿½rste kald, og herfra vil den altid vï¿½re false. Det er kun i roden, at de fundne brikker gemmes.
 	 * @param player
 	 *            Den aktuelle spiller.
 	 * @param depth
-	 *            Angiver hvor langt fra grænsen vi er. Når depth=0 kaldes evalueringsfunktionen.
+	 *            Angiver hvor langt fra grï¿½nsen vi er. Nï¿½r depth=0 kaldes evalueringsfunktionen.
 	 * @param alpha
-	 *            Lille værdi. Bruges ved alpha-cutoffs
+	 *            Lille vï¿½rdi. Bruges ved alpha-cutoffs
 	 * @param beta
-	 *            Stor værdi. Bruges ved beta-cutoffs.
+	 *            Stor vï¿½rdi. Bruges ved beta-cutoffs.
 	 * @param hint
 	 *            Angiver om alphabeta er kaldt for at finde et hint, eller for at finde AI-spillerens ryk.
-	 * @return Den bedste værdi i træet.
+	 * @return Den bedste vï¿½rdi i trï¿½et.
 	 */
 	public int alphabeta(boolean root, byte player, int depth, int alpha, int beta, boolean hint) {
-		// Antal noder vi besøger
+		// Antal noder vi besï¿½ger
 		counter++;
 
 		Piece bestPiece = null;
@@ -143,7 +143,7 @@ public class AIPlayer
 		nextBestMove = null;
 		nextBestVal = null;
 
-		// Evaluer, hvis der er en vinder, brættet er fuldt eller dybden er 0
+		// Evaluer, hvis der er en vinder, brï¿½ttet er fuldt eller dybden er 0
 		if (depth == 0)
 			return EvalFunction.eval(b);
 
@@ -154,12 +154,12 @@ public class AIPlayer
 		// tager kun den aktuelle spillers brikker
 		TreeSet<Piece> sortedPieces = new TreeSet<Piece>(new Comparator<Piece>() {
 			public int compare(Piece p1, Piece p2) {
-				// hvis objektet er ens skal returnes 0 ifølge definitionen på en comparator
+				// hvis objektet er ens skal returnes 0 ifï¿½lge definitionen pï¿½ en comparator
 				if (p1.equals(p2)) {
 					return 0;
 				}
-				// hvis de er af samme type, må ikke returneres 0, da det vil opfattes som ens objekter
-				// kun den ene vil derfor blive tilføjet i mappet
+				// hvis de er af samme type, mï¿½ ikke returneres 0, da det vil opfattes som ens objekter
+				// kun den ene vil derfor blive tilfï¿½jet i mappet
 				if((p1.getType() == Piece.BKING && p2.getType() != Piece.BPAWN) || (p1.getType() == Piece.WKING || p2.getType() != Piece.WPAWN))
 					return 1;
 				if((p2.getType() == Piece.BKING && p1.getType() != Piece.BPAWN) || (p2.getType() == Piece.WKING || p1.getType() != Piece.WPAWN))
@@ -186,7 +186,7 @@ public class AIPlayer
 			availPieces.add(p);
 		}
 		
-		if (player == Vars.WHITE) { // min-værdier
+		if (player == Vars.WHITE) { // min-vï¿½rdier
 //			for (Piece p : availableMoves.keySet()) {
 			for (int i = 0; i < availPieces.size(); i++) {
 				Piece p = availPieces.get(i);
@@ -202,31 +202,31 @@ public class AIPlayer
 					if (!root && alpha >= beta)
 						break;
 
-					if (bestPiece == null) { // sikrer at vi altid har en bestPiece => undgår nullpointer exception
+					if (bestPiece == null) { // sikrer at vi altid har en bestPiece => undgï¿½r nullpointer exception
 						bestPiece = p;
 						bestMove = move;
 					}
 					// rykker brikken
 					b.movePiece(p, move);
 					int val;
-					// hvis skakmat returneres hhv. maximal og minimal værdi
+					// hvis skakmat returneres hhv. maximal og minimal vï¿½rdi
 					if (Datalink.blackKingCheckMate)
 						val = Integer.MIN_VALUE;
 					else if (Datalink.whiteKingCheckMate)
 						val = Integer.MAX_VALUE;
 					else if (Datalink.gameDraw)
 						val = 0;
-					else if (timesup) // tiden er gået, og vi vil derfor komme til at benytte forrige dybdes resultat
+					else if (timesup) // tiden er gï¿½et, og vi vil derfor komme til at benytte forrige dybdes resultat
 						val = 0;
 					else
-						// ellers søg videre
+						// ellers sï¿½g videre
 						val = alphabeta(false, Vars.BLACK, depth - 1, alpha, beta, hint);
 					// fortryd ryk
 					b.undoLastMove();
 
 					if (val < beta) {
 						if (root) {
-							// tilføjer brikken til en liste over de bedste brikker at rykke
+							// tilfï¿½jer brikken til en liste over de bedste brikker at rykke
 							// (dvs alle fundne brikker, men ikke alle mulige brikker grundet cutoff)
 							HashMap<Integer, Piece> temp = new HashMap<Integer, Piece>();
 							temp.put(val, p);
@@ -240,22 +240,22 @@ public class AIPlayer
 			}
 			if (root) {
 				if (bestPieces.size() > 0) { // hvis tom, ingen mulige ryk => skakmat/remis
-					// vælger en tilfældig brik og sætter den til nextBestMove.
-					// grunden til at vi ikke tager den næstbedste skyldes, at det giver større risiko for dobbel og trippelloops
+					// vï¿½lger en tilfï¿½ldig brik og sï¿½tter den til nextBestMove.
+					// grunden til at vi ikke tager den nï¿½stbedste skyldes, at det giver stï¿½rre risiko for dobbel og trippelloops
 					int rand = (int) (Math.random() * bestPieces.size());
 					nextBestMove = (Byte) bestPieces.keySet().toArray()[rand];
 					nextBestVal = (Integer) bestPieces.get(nextBestMove).keySet().toArray()[0];
 					nextBestPiece = bestPieces.get(nextBestMove).get(nextBestVal);
 
 					if (loopDetected()) {
-						datalink.AddToAIOutput("Hvid er gået i loop...\n");
+						datalink.AddToAIOutput("Hvid er gÃ¥et i loop...\n");
 						loop = true;
 					}
 				}
 				if (loop) {
 					// hvis der er detekteret et loop benytter vi nextBestPiece
 					if (hint) {
-						// hvis vi har trykket hint, er det hintPiece ders kal sættes
+						// hvis vi har trykket hint, er det hintPiece ders kal sï¿½ttes
 						datalink.hintPiece = nextBestPiece;
 						datalink.hintMove = nextBestMove;
 					} else {
@@ -264,7 +264,7 @@ public class AIPlayer
 						datalink.bestMove = nextBestMove;
 					}
 					loop = false;
-					datalink.AddToAIOutput("Loop undgået!\n");
+					datalink.AddToAIOutput("Loop undgÃ¥et!\n");
 				} else {
 					// hvis ikke benytter vi den bedste.
 					if (hint) {
@@ -281,8 +281,8 @@ public class AIPlayer
 			}
 
 			return beta;
-			// Black player fungerer på samme måde, omvendt.
-		} else if (player == Vars.BLACK) { // max værdier
+			// Black player fungerer pï¿½ samme mï¿½de, omvendt.
+		} else if (player == Vars.BLACK) { // max vï¿½rdier
 //			for (Piece p : availableMoves.keySet()) {
 			for (int i = 0; i < availPieces.size(); i++) {
 				Piece p = availPieces.get(i);
@@ -331,7 +331,7 @@ public class AIPlayer
 				}
 			}
 
-			// placerer det bedste sted, hvis vi har søgt hele træet igennem
+			// placerer det bedste sted, hvis vi har sï¿½gt hele trï¿½et igennem
 			if (root) {
 				if (bestPieces.size() > 0) { // hvis tom, ingen mulige ryk => skakmat/remis
 					int rand = (int) (Math.random() * bestPieces.size());
@@ -340,7 +340,7 @@ public class AIPlayer
 					nextBestPiece = bestPieces.get(nextBestMove).get(nextBestVal);
 
 					if (loopDetected()) {
-						datalink.AddToAIOutput("Sort er gået i loop...\n");
+						datalink.AddToAIOutput("Sort er gÃ¥et i loop...\n");
 						loop = true;
 					}
 				}
@@ -354,7 +354,7 @@ public class AIPlayer
 						datalink.bestMove = nextBestMove;
 					}
 					loop = false;
-					datalink.AddToAIOutput("Loop undgået!\n");
+					datalink.AddToAIOutput("Loop undgÃ¥et!\n");
 				} else {
 					if (hint) {
 						datalink.hintPiece = bestPiece;
@@ -375,7 +375,7 @@ public class AIPlayer
 	}
 	
 	/**
-	 * Undersøger om der har været et loop i de sidste par træk.
+	 * Undersï¿½ger om der har vï¿½ret et loop i de sidste par trï¿½k.
 	 * 
 	 * @return True, hvis der er er fundet et loop. False, hvis ikke.
 	 */
@@ -398,11 +398,11 @@ public class AIPlayer
 class timer extends Thread
 {
 	/**
-	 * Timeren der sørger for at vi ikke bruger længere tid end sat i spilindstillingerne.
+	 * Timeren der sï¿½rger for at vi ikke bruger lï¿½ngere tid end sat i spilindstillingerne.
 	 */
 	public void run() {
 		try {
-			Thread.sleep(Vars.aiThinkTimeInSeconds * 1000); // efter 15 sek sættes boolean
+			Thread.sleep(Vars.aiThinkTimeInSeconds * 1000); // efter 15 sek sï¿½ttes boolean
 			AIPlayer.timesup = true; // herefter afbrydes alphabeta
 		} catch (Exception e) {
 		}

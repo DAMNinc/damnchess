@@ -24,7 +24,7 @@ public class Vars
 	public static long startTime = System.currentTimeMillis();
 	public static String filename = "";
 	
-//	public final static int[] pieceValues = {100, 330, 330, 520, 980, 28800, 100}; // ligger i array for at kunne tilgå dem udfra brikkens type (pieceValues[p.getType()])
+//	public final static int[] pieceValues = {100, 330, 330, 520, 980, 28800, 100}; // ligger i array for at kunne tilgÃ¥ dem udfra brikkens type (pieceValues[p.getType()])
 	public final static int[] pieceValues = {91, 425, 389, 556, 900, 24538, 89};
 	public final static int pawnValue =  pieceValues[0];
 	public final static int knightValue =  pieceValues[1];

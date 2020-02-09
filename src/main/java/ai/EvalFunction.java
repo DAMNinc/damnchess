@@ -34,7 +34,7 @@ public class EvalFunction {
 		if (isolated)
 			points -= penalty[pawn.getFile() - 1]; // skal lige rettes
 
-		// Tjekker nummer 2, om bønder er på samme file. Ikke isolerede får
+		// Tjekker nummer 2, om bÃ¸nder er pÃ¥ samme file. Ikke isolerede fÃ¥r
 		// 12 point i straf.
 		surroundings = new int[] { -10, 10 };
 
@@ -64,13 +64,13 @@ public class EvalFunction {
 		if (backwardpawn) {
 			points -= 6;
 
-			// Tjekker nummer 4, om en backwardpawn har en halvåben file til den
+			// Tjekker nummer 4, om en backwardpawn har en halvÃ¥ben file til den
 			// ene eller anden side. Straf 4p.
 			boolean leftSideIsOpen = true;
 			boolean rightSideIsOpen = true;
 			// 20+10+file
-			// Nederste og øverste felt behøver vi ikke kigge på. Nederst kommer
-			// ens bonde aldrig. Øverst bliver ens bonde promoted
+			// Nederste og Ã¸verste felt behÃ¸ver vi ikke kigge pÃ¥. Nederst kommer
+			// ens bonde aldrig. Ã˜verst bliver ens bonde promoted
 			if (pawn.getType() == Piece.WPAWN) {
 				for (int i = 1; i < 7; i++) {
 					if (board.getBoard()[20 + pawn.getFile() - 1 + i * 10] == 100) {
@@ -119,15 +119,15 @@ public class EvalFunction {
 				points -= 4;
 		}
 
-		// Tjekker nummer 5, bønder der rykker frem får bonus
+		// Tjekker nummer 5, bÃ¸nder der rykker frem fÃ¥r bonus
 		int[] filePoint = { 1, 2, 3, 4, 4, 3, 2, 1 };
 
-		// (pawn.getRank()-2), sørger for at man ikke får point når man står i
+		// (pawn.getRank()-2), sÃ¸rger for at man ikke fÃ¥r point nÃ¥r man stÃ¥r i
 		// startpositionen
 		// filePoint[pawn.getFile()] - antal point varierer ud fra den file man
-		// står på
+		// stÃ¥r pÃ¥
 		// getGameProgress(board) / 10 - hvor langt er vi i spillet.
-		// Ganges med hvor man står på boardet
+		// Ganges med hvor man stÃ¥r pÃ¥ boardet
 
 		if (pawn.getType() == Piece.WPAWN)
 			points += (double) ((pawn.getRank() - 2) * filePoint[pawn.getFile() - 1] + (double) ((double) getGameProgress(board)) / 10 * (double) ((pawn.getRank() - 2) * filePoint[pawn.getFile() - 1]));
@@ -135,7 +135,7 @@ public class EvalFunction {
 		else if (pawn.getType() == Piece.BPAWN)
 			points += (double) ((7 - pawn.getRank()) * filePoint[pawn.getFile() - 1] + (double) ((double) getGameProgress(board)) / 10 * (double) ((7 - pawn.getRank()) * filePoint[pawn.getFile() - 1]));
 
-		// Tjekker nummer 6, bønder på e/d får 10p straf, hvis de er på rank 2.
+		// Tjekker nummer 6, bÃ¸nder pÃ¥ e/d fÃ¥r 10p straf, hvis de er pÃ¥ rank 2.
 		// Yderligere 15p hvis blocked
 		if (pawn.getType() == Piece.WPAWN) {
 			if (pawn.getRank() == 2 && (pawn.getFile() == 4 || pawn.getFile() == 5)) {
@@ -162,13 +162,13 @@ public class EvalFunction {
 		} catch (Exception e) {
 		}
 
-		// Tjekker nummer 8, "Passed" bønder får bonus point for hver rank de
+		// Tjekker nummer 8, "Passed" bÃ¸nder fÃ¥r bonus point for hver rank de
 		// rykker frem
 		// (som funktion af spillet fremskred), og om modstanderen blokker eller
 		// kan angribe
-		// et eller flere felter frem, eller om modstanderen konge er i nærheden
+		// et eller flere felter frem, eller om modstanderen konge er i nÃ¦rheden
 		// af bonden.
-		// Denne bonus går fra 15 point til blokkeret bonde på rank 2, til 300
+		// Denne bonus gÃ¥r fra 15 point til blokkeret bonde pÃ¥ rank 2, til 300
 		// point til en unblocked
 		// pawn der ikke kan stoppes fra queening.
 		boolean isPassed = true;
@@ -233,14 +233,14 @@ public class EvalFunction {
 	{
 		int points = Vars.knightValue;
 
-		// Nr. 1: Bonus for afstand til midten. 0 i hjørner, 30 i midten.
+		// Nr. 1: Bonus for afstand til midten. 0 i hjÃ¸rner, 30 i midten.
 		int[][] distanceFromCenterBonus = { { 0, 5, 10, 15, 15, 10, 5, 0 }, { 5, 10, 15, 20, 20, 15, 10, 5 }, { 10, 15, 20, 25, 25, 20, 15, 10 }, { 15, 20, 25, 30, 30, 25, 20, 15 }, { 15, 20, 25, 30, 30, 25, 20, 15 }, { 10, 15, 20, 25, 25, 20, 15, 10 }, { 5, 10, 15, 20, 20, 15, 10, 5 }, { 0, 5, 10, 15, 15, 10, 5, 0 } };
 
 		// finder brikkens position udfra file og rank
 		int[] position = { knight.getFile(), knight.getRank() };
 		points += distanceFromCenterBonus[position[0] - 1][position[1] - 1];
 
-		// Nr. 2: Bonus for at være inden for 2 ryk fra fjenden. 4p i slutningen
+		// Nr. 2: Bonus for at vÃ¦re inden for 2 ryk fra fjenden. 4p i slutningen
 		// positioner der skal tjekkes, relativt til brikken
 		int[] positionsToCheck = { -20, -11, -10, -9, -2, -1, 1, 2, 9, 10, 11, 20 };
 		for (int pos : positionsToCheck) {
@@ -256,8 +256,8 @@ public class EvalFunction {
 		} catch (Exception e) {
 		}
 
-		// Nr 4: Undersøger om knight er truet af fjendens pawns. Hvis ikke
-		// gives bonus på 8p
+		// Nr 4: UndersÃ¸ger om knight er truet af fjendens pawns. Hvis ikke
+		// gives bonus pÃ¥ 8p
 		// den er truet, hvis der er en pawn op til 3 felter foran den.
 		boolean inDanger = false;
 		int[] positions = null;
@@ -292,7 +292,7 @@ public class EvalFunction {
 		int left = board.getPieces().size();
 		points += 32 - left;
 
-		// Nr. x: Bonus for afstand til midten. 0 i hjørner, 30 i midten.
+		// Nr. x: Bonus for afstand til midten. 0 i hjÃ¸rner, 30 i midten.
 		int[][] distanceFromCenterBonus = { { 14, 14, 14, 14, 14, 14, 14, 14 }, { 14, 17, 17, 17, 17, 17, 17, 14 }, { 14, 17, 20, 20, 20, 20, 17, 14 }, { 14, 17, 20, 22, 22, 20, 17, 14 }, { 14, 17, 20, 22, 22, 20, 17, 14 }, { 14, 17, 20, 20, 20, 20, 17, 14 }, { 14, 17, 17, 17, 17, 17, 17, 14 }, { 14, 14, 14, 14, 14, 14, 14, 14 } };
 
 		// finder brikkens position udfra file og rank
@@ -319,7 +319,7 @@ public class EvalFunction {
 			}
 		}
 
-		// giver point alt efter hvor mange felter løberen kan tage
+		// giver point alt efter hvor mange felter lÃ¸beren kan tage
 		int moves = board.getLegalMoves(bishop).length;
 
 		if (moves == 0)
@@ -340,7 +340,7 @@ public class EvalFunction {
 	{
 		int points = Vars.rookValue;
 
-		// giver point alt efter hvor mange felter tårnet kan tage
+		// giver point alt efter hvor mange felter tÃ¥rnet kan tage
 		int moves = board.getLegalMoves(rook).length;
 
 		if (moves <= 12) {
@@ -350,7 +350,7 @@ public class EvalFunction {
 			points += 20;
 		}
 
-		// tjekker om der er bønder på tårnets file
+		// tjekker om der er bÃ¸nder pÃ¥ tÃ¥rnets file
 		int file = rook.getFile();
 
 		boolean foundEnemyPawn = false;
@@ -417,12 +417,12 @@ public class EvalFunction {
 		byte enemyRook = (myKing == Piece.WKING ? Piece.BROOK : Piece.WROOK);
 		byte enemyBishop = (myKing == Piece.WKING ? Piece.BBISHOP : Piece.WBISHOP);
 
-		// Nr. 1: Kongen straffes for at være tæt på midten i starte af spillet,
-		// og belønnes for samme i slutningen
-		// Går fra -24 til +36. Dette gælder ikke hvis fjenden kun har
-		// bønder+konge
+		// Nr. 1: Kongen straffes for at vÃ¦re tÃ¦t pÃ¥ midten i starte af spillet,
+		// og belÃ¸nnes for samme i slutningen
+		// GÃ¥r fra -24 til +36. Dette gÃ¦lder ikke hvis fjenden kun har
+		// bÃ¸nder+konge
 
-		// Hvis alle disse arraylists er tomme, er der kun konge og bønder
+		// Hvis alle disse arraylists er tomme, er der kun konge og bÃ¸nder
 		// tilbage
 		if (board.getPiecesOfType(enemyKnight).isEmpty() && board.getPiecesOfType(enemyQueen).isEmpty() && board.getPiecesOfType(enemyRook).isEmpty() && board.getPiecesOfType(enemyBishop).isEmpty()) {
 			int[][] boardValues = { { 0, 1, 2, 3, 3, 2, 1, 0 }, { 1, 2, 3, 4, 4, 3, 2, 1 }, { 2, 3, 4, 5, 5, 4, 3, 2 }, { 3, 4, 5, 6, 6, 5, 4, 3 }, { 3, 4, 5, 6, 6, 5, 4, 3 }, { 2, 3, 4, 5, 5, 4, 3, 2 }, { 1, 2, 3, 4, 4, 3, 2, 1 }, { 0, 1, 2, 3, 3, 2, 1, 0 } };
@@ -562,10 +562,10 @@ public class EvalFunction {
 	 *  Tools til evaluation
 	 */
 	/**
-	 * Beregner "Taxicabdistance" mellem 2 brikker. Altså afstanden ved at følge felterne og ikke fugle flugt.
+	 * Beregner "Taxicabdistance" mellem 2 brikker. AltsÃ¥ afstanden ved at fÃ¸lge felterne og ikke fugle flugt.
 	 * @param p1 Brik 1
 	 * @param p2 Brik 2
-	 * @param b Brættet de står på
+	 * @param b BrÃ¦ttet de stÃ¥r pÃ¥
 	 * @return Afstanden mellem dem
 	 */
 	public static int getTaxicabDistance(Piece p1, Piece p2, Board b){
@@ -573,21 +573,21 @@ public class EvalFunction {
 	}
 	
 	/** 
-	 * Giver en værdi for hvor langt vi er i spillet
-	 * @param b Brættet
-	 * @return Værdi mellem 1 og 10, hvor 10 er slutning
+	 * Giver en vÃ¦rdi for hvor langt vi er i spillet
+	 * @param b BrÃ¦ttet
+	 * @return VÃ¦rdi mellem 1 og 10, hvor 10 er slutning
 	 */
 	public static int getGameProgress(Board b){
-		// skal være afhængig af resterende tid, antal brikker og forventet antal moves
+		// skal vÃ¦re afhÃ¦ngig af resterende tid, antal brikker og forventet antal moves
 		
 		double progress = 0.0;
 		
 		// antal brikker
-		progress += (double) ( 32 - b.getPieces().size() ) / 32 * 5; // 5 skal være 3.3 her, da vi vil have en til ting at vurdere længden på
+		progress += (double) ( 32 - b.getPieces().size() ) / 32 * 5; // 5 skal vÃ¦re 3.3 her, da vi vil have en til ting at vurdere lÃ¦ngden pÃ¥
 		
 		final int MOVES = 100;
 		
-		progress += (double) b.getMoveHistory().size() / MOVES * 5; // 5 skal være 3.3 her
+		progress += (double) b.getMoveHistory().size() / MOVES * 5; // 5 skal vÃ¦re 3.3 her
 				
 		
 		return (int) Math.round(progress);		

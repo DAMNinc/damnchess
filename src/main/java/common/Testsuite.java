@@ -17,7 +17,7 @@ public class Testsuite
 	public void runStartTests()
 	{
 		System.out.println("***************************************************");
-		System.out.println("Kører globale test på skakbrættet");
+		System.out.println("KÃ¸rer globale test pÃ¥ skakbrÃ¦ttet");
 		System.out.println("***************************************************");
 		
 		long start;
@@ -58,7 +58,7 @@ public class Testsuite
 		System.out.println("Tid for 100.000 ryk fetches for alle hvide brikker: " + (stop-start));		
 		
 		System.out.println("***************************************************");
-		System.out.println("Kører test på evalueringer");
+		System.out.println("KÃ¸rer test pÃ¥ evalueringer");
 		System.out.println("***************************************************");
 		
 		start = System.currentTimeMillis();

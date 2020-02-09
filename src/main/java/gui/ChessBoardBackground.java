@@ -33,7 +33,7 @@ public class ChessBoardBackground extends JPanel
 			g.drawString("" + (8-i), 
 						 chessboard.getX()-15, 
 						 chessboard.getY() + (chessboard.getHeight()/8)*i + chessboard.getHeight()/16 + 4);
-		// Tegn højre
+		// Tegn hÃ¸jre
 		for (int i = 0 ; i <= 7 ; i++)
 			g.drawString("" + (8-i), 
 						 chessboard.getWidth() + chessboard.getY() + 8, 
@@ -54,7 +54,7 @@ public class ChessBoardBackground extends JPanel
 						 chessboard.getX() + (chessboard.getWidth()/8)*i + chessboard.getWidth()/16 - 2, 
 						 chessboard.getY() + chessboard.getHeight() + 16);
 		
-		//g.drawString("Hold \"Ctrl\" for at få vist mulige ryk!", chessboard.getX(), chessboard.getY() + chessboard.getHeight() + 50);
+		//g.drawString("Hold \"Ctrl\" for at fÃ¥ vist mulige ryk!", chessboard.getX(), chessboard.getY() + chessboard.getHeight() + 50);
 	
 //		g.setColor(Color.white);
 //		g.fillRect(25, 203, 473, 118);

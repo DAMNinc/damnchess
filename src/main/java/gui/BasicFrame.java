@@ -11,14 +11,14 @@ public class BasicFrame extends JFrame
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		// Nedenstående laver layout, som er afhængig af styresystemet
+		// NedenstÃ¥ende laver layout, som er afhÃ¦ngig af styresystemet
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		// centrere frame på skærmen
+		// centrere frame pÃ¥ skÃ¦rmen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension frameSize = getSize();
 		if (frameSize.height > screenSize.height) {
@@ -32,8 +32,8 @@ public class BasicFrame extends JFrame
 	}
 
 	/*
-	 * Nedenstående metoder bruges til at vise og gemme vinduet på forskellige
-	 * måder
+	 * NedenstÃ¥ende metoder bruges til at vise og gemme vinduet pÃ¥ forskellige
+	 * mÃ¥der
 	 */
 	public void showIt()
 	{
