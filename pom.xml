@@ -26,8 +26,8 @@
     </build>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceEncoding>ISO-8859-11</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>ISO-8859-11</project.reporting.outputEncoding>
         <java.version>7</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
