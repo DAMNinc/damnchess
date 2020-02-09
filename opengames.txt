@@ -1,0 +1,10 @@
+# Syntaks:
+# Navn fra-til(HVID) fra-til(SORT) etc.
+# Notation er standard
+Portuguese_Opening e2-e4 e7-e5 Lf1-b5
+Lopez_Opening e2-e4 e7-e5 c2-c3
+Vienna_Game e2-e4 e7-e5 Sb1-c3
+Evans_Gambit e2-e4 e7-e5 Sg1-f3 Sb8-c6 Lf1-c4 Lf8-c5 b2-b4
+Inverted_Hungarian_Opening e2-e4 e7-e5 Sg1-f3 Sb8-c6 Lf1-e2
+Bogo_Indian_Defence d2-d4 Sg8-f6 c2-c4 e7-e6 Sg1-f3 Lf8-b4
+#Fool's_Mate f2-f3 e7-e5 g2-g4 Dd8-h4
